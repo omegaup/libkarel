@@ -9,7 +9,6 @@ import libkarel
 
 class TestLibKarelInput(unittest.TestCase):
     """Prueba libkarel.KarelInput."""
-
     def test_basic(self) -> None:
         """Prueba básica."""
         karel_in = libkarel.KarelInput('''
@@ -70,23 +69,26 @@ class TestLibKarelInput(unittest.TestCase):
 </ejecucion>
         ''')
 
-        self.assertEqual(karel_in.paredes(1, 1),
-                         libkarel.Direccion.SUR | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
-        self.assertEqual(karel_in.paredes(2, 1),
-                         libkarel.Direccion.SUR | libkarel.Direccion.OESTE | libkarel.Direccion.NORTE)
+        self.assertEqual(
+            karel_in.paredes(1, 1), libkarel.Direccion.SUR
+            | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
+        self.assertEqual(
+            karel_in.paredes(2, 1), libkarel.Direccion.SUR
+            | libkarel.Direccion.OESTE | libkarel.Direccion.NORTE)
         self.assertEqual(karel_in.paredes(3, 1),
                          libkarel.Direccion.SUR | libkarel.Direccion.ESTE)
         self.assertEqual(karel_in.paredes(1, 2),
                          libkarel.Direccion.NORTE | libkarel.Direccion.OESTE)
-        self.assertEqual(karel_in.paredes(2, 2),
-                         libkarel.Direccion.SUR | libkarel.Direccion.ESTE | libkarel.Direccion.NORTE)
-        self.assertEqual(karel_in.paredes(3, 2),
-                         libkarel.Direccion.NORTE | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
+        self.assertEqual(
+            karel_in.paredes(2, 2), libkarel.Direccion.SUR
+            | libkarel.Direccion.ESTE | libkarel.Direccion.NORTE)
+        self.assertEqual(
+            karel_in.paredes(3, 2), libkarel.Direccion.NORTE
+            | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
 
 
 class TestLibKarelOutput(unittest.TestCase):
     """Prueba libkarel.KarelOutput"""
-
     def test_basic(self) -> None:
         """Prueba básica."""
 
