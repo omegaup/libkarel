@@ -59,8 +59,10 @@ class KarelInput:
             self.__y = 1
             self.__direccion = 'NORTE'
 
-        self.__despliega = [x.attrib['tipo'].upper() for x in
-                            self.root.findall('programas/programa/despliega')]
+        self.__despliega = [
+            x.attrib['tipo'].upper()
+            for x in self.root.findall('programas/programa/despliega')
+        ]
         self.__despliega_orientacion = 'ORIENTACION' in self.despliega
         self.__despliega_mundo = 'MUNDO' in self.despliega
         self.__despliega_posicion = 'POSICION' in self.despliega
@@ -71,12 +73,14 @@ class KarelInput:
                 x=int(x.attrib['x']),
                 y=int(x.attrib['y']),
                 zumbadores=_cantidad(x.attrib['zumbadores']),
-            ) for x in self.root.findall('mundos/mundo/monton')]
+            ) for x in self.root.findall('mundos/mundo/monton')
+        ]
         self.__zumbadores = {(x.x, x.y): x.zumbadores
                              for x in lista_zumbadores}
 
-        lista_dump = [{k: int(x.attrib[k]) for k in x.attrib} for x in
-                      self.root.findall('mundos/mundo/posicionDump')]
+        lista_dump = [{k: int(x.attrib[k])
+                       for k in x.attrib}
+                      for x in self.root.findall('mundos/mundo/posicionDump')]
         self.__dump = set((x['x'], x['y']) for x in lista_dump)
 
         self.__paredes: DefaultDict[
@@ -92,11 +96,11 @@ class KarelInput:
         #          |
         # (x2, y2) v (x1, y1)
         #    * --------- *
-        #
         #    |           |
-        #       (x1, y1) <- celda con una pared al norte
         #    |           |
-        #
+        #    |  (x1, y1) <- celda con una pared al norte
+        #    |           |
+        #    |           |
         #    * - - - - - *
         #
         # El código asigna x = max(x1, x2), y = y1 = y2.
@@ -245,13 +249,14 @@ class KarelInput:
 
     def __repr__(self) -> str:
         """Imprime una versión bonita del objeto."""
-        return '<libkarel.KarelInput %s>' % ', '.join('%s=%r' % x for x in {
-            'x': self.x,
-            'y': self.y,
-            'mochila': self.mochila,
-            'direccion': self.direccion,
-            'despliega': self.despliega,
-        }.items())
+        return '<libkarel.KarelInput %s>' % ', '.join(
+            '%s=%r' % x for x in {
+                'x': self.x,
+                'y': self.y,
+                'mochila': self.mochila,
+                'direccion': self.direccion,
+                'despliega': self.despliega,
+            }.items())
 
 
 class KarelOutput:
@@ -355,13 +360,14 @@ class KarelOutput:
 
     def __repr__(self) -> str:
         """Imprime una versión bonita del objeto"""
-        return '<libkarel.KarelOutput %s>' % ', '.join('%s=%r' % x for x in {
-            'x': self.x,
-            'y': self.y,
-            'direccion': self.direccion,
-            'resultado': self.resultado,
-            'error': self.error,
-        }.items())
+        return '<libkarel.KarelOutput %s>' % ', '.join(
+            '%s=%r' % x for x in {
+                'x': self.x,
+                'y': self.y,
+                'direccion': self.direccion,
+                'resultado': self.resultado,
+                'error': self.error,
+            }.items())
 
 
 def load() -> Tuple[KarelInput, KarelOutput, str]:
