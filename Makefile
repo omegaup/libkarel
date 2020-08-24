@@ -1,4 +1,4 @@
-.PHONY: test lint pytest mypy kareltest
+.PHONY: test lint pytest mypy kareltest build upload
 
 test: pytest lint mypy kareltest
 
@@ -18,3 +18,10 @@ kareltest:
 		echo "Expected result to be 1, got '$${RESULT}'"; \
 		exit 1; \
 	fi
+
+build:
+	rm -rf dist/*
+	python3 setup.py sdist bdist_wheel
+
+upload:
+	python3 -m twine upload --repository testpypi dist/*
