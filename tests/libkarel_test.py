@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 """Pruebas unitarias de libkarel."""
 
 import unittest
 
 import libkarel
-from libkarel import Direccion
 
 
 class TestLibKarelInput(unittest.TestCase):
@@ -73,17 +71,17 @@ class TestLibKarelInput(unittest.TestCase):
         ''')
 
         self.assertEqual(karel_in.paredes(1, 1),
-                         Direccion.SUR | Direccion.OESTE | Direccion.ESTE)
+                         libkarel.Direccion.SUR | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
         self.assertEqual(karel_in.paredes(2, 1),
-                         Direccion.SUR | Direccion.OESTE | Direccion.NORTE)
+                         libkarel.Direccion.SUR | libkarel.Direccion.OESTE | libkarel.Direccion.NORTE)
         self.assertEqual(karel_in.paredes(3, 1),
-                         Direccion.SUR | Direccion.ESTE)
+                         libkarel.Direccion.SUR | libkarel.Direccion.ESTE)
         self.assertEqual(karel_in.paredes(1, 2),
-                         Direccion.NORTE | Direccion.OESTE)
+                         libkarel.Direccion.NORTE | libkarel.Direccion.OESTE)
         self.assertEqual(karel_in.paredes(2, 2),
-                         Direccion.SUR | Direccion.ESTE | Direccion.NORTE)
+                         libkarel.Direccion.SUR | libkarel.Direccion.ESTE | libkarel.Direccion.NORTE)
         self.assertEqual(karel_in.paredes(3, 2),
-                         Direccion.NORTE | Direccion.OESTE | Direccion.ESTE)
+                         libkarel.Direccion.NORTE | libkarel.Direccion.OESTE | libkarel.Direccion.ESTE)
 
 
 class TestLibKarelOutput(unittest.TestCase):
