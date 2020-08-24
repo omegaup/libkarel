@@ -27,3 +27,6 @@ jobs:
 
       - name: pytest
         run: make pytest
+
+      - name: kareltest
+        run: make kareltest

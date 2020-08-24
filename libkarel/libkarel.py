@@ -47,6 +47,20 @@ class KarelInput:
             self.__w = 100
             self.__h = 100
 
+        condiciones = self.root.find('condiciones')
+        if condiciones is not None:
+            self.__instrucciones_maximas = int(
+                condiciones.attrib['instruccionesMaximasAEjecutar'])
+            self.__longitud_stack = int(condiciones.attrib['longitudStack'])
+        else:
+            self.__instrucciones_maximas = 0
+            self.__longitud_stack = 0
+
+        self.__limites = {
+            x.attrib['nombre']: int(x.attrib['maximoNumeroDeEjecuciones'])
+            for x in self.root.findall('condiciones/comando')
+        }
+
         programa = self.root.find('programas/programa')
         self.__mochila: Cantidad = 'INFINITO'
         if programa is not None:
@@ -86,8 +100,8 @@ class KarelInput:
         self.__paredes: DefaultDict[
             Casilla, Direccion] = collections.defaultdict(lambda: Direccion(0))
 
-        # Las paredes se representan como el segmento que une
-        # dos puntos (x1,y1), (x2,y2) en el plano.
+        # Las paredes se representan como el segmento que une dos puntos
+        # (x1,y1), (x2,y2) en el plano.
         #
         # Pensemos en el caso de una pared horizontal. Sin pérdida de
         # generalidad, sea x1 > x2. El diagrama ilustra este caso:
@@ -103,14 +117,13 @@ class KarelInput:
         #    |           |
         #    * - - - - - *
         #
-        # El código asigna x = max(x1, x2), y = y1 = y2.
-        # Eso basta para saber cuáles son las dos celdas adyacentes
-        # a la pared. El caso vertical es análogo.
+        # El código asigna x = max(x1, x2), y = y1 = y2.  Eso basta para saber
+        # cuáles son las dos celdas adyacentes a la pared. El caso vertical es
+        # análogo.
         #
-        # En el XML se distingue del caso vertical u horizontal
-        # por la existencia o no de los atributos x2, y2, ya que
-        # se obvia el que está repetido.
-
+        # En el XML se distingue del caso vertical u horizontal por la
+        # existencia o no de los atributos x2, y2, ya que se obvia el que está
+        # repetido.
         for x in range(1, self.__w + 1):
             self.__paredes[(x, 0)] |= Direccion.NORTE
             self.__paredes[(x, 1)] |= Direccion.SUR
@@ -163,6 +176,23 @@ class KarelInput:
         Puede ser uno de ['NORTE', 'ESTE', 'SUR', 'OESTE'].
         """
         return self.__direccion
+
+    @property
+    def instrucciones_maximas(self) -> int:
+        """Instrucciones maximas a ejecutar"""
+        return self.__instrucciones_maximas
+
+    @property
+    def longitud_stack(self) -> int:
+        """El tamaño maximo que puede tener el stack"""
+        return self.__longitud_stack
+
+    def limite_comando(self, comando: str) -> Optional[int]:
+        """Regresa el número máximo de veces que se puede usar un comando
+
+        Si no hay límite, regresa None
+        """
+        return self.__limites.get(comando, None)
 
     @property
     def mochila(self) -> Cantidad:
