@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """Pruebas unitarias de libkarel."""
 
@@ -10,7 +10,7 @@ import libkarel
 class TestLibKarelInput(unittest.TestCase):
     """Prueba libkarel.KarelInput."""
 
-    def test_basic(self):
+    def test_basic(self) -> None:
         """Prueba básica."""
         karel_in = libkarel.KarelInput('''
 <ejecucion>
@@ -51,7 +51,7 @@ class TestLibKarelInput(unittest.TestCase):
         self.assertEqual(karel_in.zumbadores(1, 1), 0)
         self.assertEqual(karel_in.dump(1, 1), False)
 
-    def test_walls(self):
+    def test_walls(self) -> None:
         """Prueba de las paredes."""
 
         karel_in = libkarel.KarelInput('''
@@ -87,7 +87,7 @@ class TestLibKarelInput(unittest.TestCase):
 class TestLibKarelOutput(unittest.TestCase):
     """Prueba libkarel.KarelOutput"""
 
-    def test_basic(self):
+    def test_basic(self) -> None:
         """Prueba básica."""
 
         karel_out = libkarel.KarelOutput('''
@@ -113,7 +113,7 @@ class TestLibKarelOutput(unittest.TestCase):
         # API público
         self.assertEqual(karel_out.zumbadores(1, 1), 0)
 
-    def test_instructions(self):
+    def test_instructions(self) -> None:
         """Prueba del dump de instrucciones."""
 
         karel_out = libkarel.KarelOutput('''
