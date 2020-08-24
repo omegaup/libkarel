@@ -1,5 +1,6 @@
 """Setup tools for libkarel."""
 
+import subprocess
 import setuptools  # type: ignore
 
 with open("README.md", "r") as fh:
@@ -7,13 +8,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='libkarel',
-    version='1.0.0',
+    version=subprocess.check_output(['/usr/bin/git', 'describe', '--tags'],
+                                    universal_newlines=True),
     author='omegaUp',
     author_email='lhchavez@omegaup.org',
     description='Utilities for validating karel.js test cases',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/omegaup/karel.js',
+    url='https://github.com/omegaup/libkarel',
     packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',
