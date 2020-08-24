@@ -3,7 +3,7 @@
 test: pytest lint
 
 lint:
-	flake8 --exclude=.env,.tox,dist,docs,build,*.egg --ignore=E501 .
+	python3 -m flake8 --exclude=.env,.tox,dist,docs,build,*.egg --ignore=E501 .
 
 pytest:
-	pytest -xvv
+	python3 -m pytest -xvv
