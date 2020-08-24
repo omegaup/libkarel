@@ -3,6 +3,7 @@
 
 from .libkarel import (Casilla, Cantidad, Zumbadores, Direccion, KarelInput,
                        KarelOutput, load, load_dict)
+from . import kareltest
 
 __all__ = [
     'Casilla',
@@ -13,4 +14,5 @@ __all__ = [
     'KarelOutput',
     'load',
     'load_dict',
+    'kareltest',
 ]

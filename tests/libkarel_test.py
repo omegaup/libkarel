@@ -29,6 +29,13 @@ class TestLibKarelInput(unittest.TestCase):
         self.assertEqual(karel_in.w, 100)
         self.assertEqual(karel_in.h, 100)
 
+        # Condiciones
+        self.assertEqual(karel_in.instrucciones_maximas, 10000000)
+        self.assertEqual(karel_in.longitud_stack, 65000)
+
+        # Límites
+        self.assertIsNone(karel_in.limite_comando('foo'))
+
         # Estado inicial de Karel
         self.assertEqual(karel_in.x, 1)
         self.assertEqual(karel_in.y, 1)
