@@ -15,14 +15,15 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install -r requirements/test.txt
+
       - name: Verify python and mypy version installed
         run: |
           python3 --version
           python3 -m mypy --version
-
-      - name: Install Python dependencies
-        run: |
-          python3 -m pip install -r requirements/test.txt
+          python3 -m pytest --version
 
       - name: Lint
         run: make lint
