@@ -62,7 +62,6 @@ class KarelInput:
             self.__memoria_stack = 0
             self.__llamada_maxima = 0
 
-
         self.__limites = {
             x.attrib['nombre']: int(x.attrib['maximoNumeroDeEjecuciones'])
             for x in self.root.findall('condiciones/comando')
@@ -203,7 +202,6 @@ class KarelInput:
     def llamada_maxima(self) -> int:
         """Número máximo de llamadas permitidas"""
         return self.__llamada_maxima
-
 
     def limite_comando(self, comando: str) -> Optional[int]:
         """Regresa el número máximo de veces que se puede usar un comando
