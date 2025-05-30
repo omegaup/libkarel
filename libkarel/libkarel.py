@@ -52,9 +52,16 @@ class KarelInput:
             self.__instrucciones_maximas = int(
                 condiciones.attrib['instruccionesMaximasAEjecutar'])
             self.__longitud_stack = int(condiciones.attrib['longitudStack'])
+            self.__memoria_stack = int(
+                condiciones.attrib.get('memoriaStack', 0))
+            self.__llamada_maxima = int(
+                condiciones.attrib.get('llamadaMaxima', 0))
         else:
             self.__instrucciones_maximas = 0
             self.__longitud_stack = 0
+            self.__memoria_stack = 0
+            self.__llamada_maxima = 0
+
 
         self.__limites = {
             x.attrib['nombre']: int(x.attrib['maximoNumeroDeEjecuciones'])
@@ -186,6 +193,17 @@ class KarelInput:
     def longitud_stack(self) -> int:
         """El tamaño maximo que puede tener el stack"""
         return self.__longitud_stack
+
+    @property
+    def memoria_stack(self) -> int:
+        """Memoria máxima del stack"""
+        return self.__memoria_stack
+
+    @property
+    def llamada_maxima(self) -> int:
+        """Número máximo de llamadas permitidas"""
+        return self.__llamada_maxima
+
 
     def limite_comando(self, comando: str) -> Optional[int]:
         """Regresa el número máximo de veces que se puede usar un comando
