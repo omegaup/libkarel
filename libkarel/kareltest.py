@@ -81,7 +81,7 @@ class TestRunner(unittest.TextTestRunner):
     """Un unittest.TestRunner que imprime 1 a salida estándar en éxito."""
     def run(
         self, test: Union[unittest.suite.TestSuite, unittest.case.TestCase]
-    ) -> unittest.result.TestResult:
+    ) -> unittest.TextTestResult:
         result = super().run(test)
         if result is not None and result.wasSuccessful():
             print(1)
