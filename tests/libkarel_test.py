@@ -26,7 +26,7 @@ class TestLibKarelInput(unittest.TestCase):
 </ejecucion>
         ''')
         # Versión por defecto del escenario
-        self.assertEqual(karel_in.version, '0.1')
+        self.assertEqual(karel_in.version, '1.0')
 
         # Dimensiones del mundo
         self.assertEqual(karel_in.w, 100)
