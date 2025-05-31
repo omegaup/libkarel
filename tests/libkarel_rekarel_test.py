@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""Pruebas unitarias de libkarel."""
+"""Pruebas unitarias de libkarel con los parametros de ReKarel."""
 
 import unittest
 
