@@ -25,6 +25,9 @@ class TestLibKarelInput(unittest.TestCase):
   </programas>
 </ejecucion>
         ''')
+        # Versión por defecto del escenario
+        self.assertEqual(karel_in.version, '0.1')
+
         # Dimensiones del mundo
         self.assertEqual(karel_in.w, 100)
         self.assertEqual(karel_in.h, 100)
@@ -60,9 +63,9 @@ class TestLibKarelInput(unittest.TestCase):
         self.assertEqual(karel_in.dump(1, 1), False)
 
     def test_basic_with_new_conditions(self) -> None:
-        """Prueba básica."""
+        """Prueba de las nuevas opciones compatibles con ReKarel."""
         karel_in = libkarel.KarelInput('''
-<ejecucion>
+<ejecucion version="1.1">
   <condiciones instruccionesMaximasAEjecutar="10000000" longitudStack="65000"
                memoriaStack="512" llamadaMaxima="1000"/>
   <mundos>
@@ -76,6 +79,9 @@ class TestLibKarelInput(unittest.TestCase):
   </programas>
 </ejecucion>
         ''')
+        # Versión del escenario
+        self.assertEqual(karel_in.version, '1.1')
+
         # Nuevas condiciones
         self.assertEqual(karel_in.memoria_stack, 512)
         self.assertEqual(karel_in.llamada_maxima, 1000)

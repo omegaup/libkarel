@@ -39,6 +39,7 @@ class KarelInput:
     def __init__(self, contents: str):
         # pylint: disable=too-many-statements
         self.root = ET.fromstring(contents)
+        self.__version = str(self.root.attrib.get('version', '0.1'))
         mundo = self.root.find('mundos/mundo')
         if mundo is not None:
             self.__w = int(mundo.attrib['ancho'])
@@ -154,6 +155,11 @@ class KarelInput:
                 y = max(y, int(pared.attrib['y2']))
                 self.__paredes[(x, y)] |= Direccion.ESTE
                 self.__paredes[(x + 1, y)] |= Direccion.OESTE
+
+    @property
+    def version(self) -> str:
+        """La versión del archivo de entrada."""
+        return self.__version
 
     @property
     def x(self) -> int:
