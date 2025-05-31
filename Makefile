@@ -3,7 +3,7 @@
 test: pytest lint mypy kareltest
 
 lint:
-	python3 -m flake8 --exclude=.env,.tox,dist,docs,build,*.egg --ignore=E501,W503 .
+	python3 -m flake8 --exclude=.env,.venv,.tox,dist,docs,build,*.egg --ignore=E501,W503 .
 
 mypy:
 	python3 -m mypy --strict .
