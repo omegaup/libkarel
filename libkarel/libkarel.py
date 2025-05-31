@@ -39,7 +39,7 @@ class KarelInput:
     def __init__(self, contents: str):
         # pylint: disable=too-many-statements
         self.root = ET.fromstring(contents)
-        self.__version = str(self.root.attrib.get('version', '0.1'))
+        self.__version = str(self.root.attrib.get('version', '1.0'))
         mundo = self.root.find('mundos/mundo')
         if mundo is not None:
             self.__w = int(mundo.attrib['ancho'])
