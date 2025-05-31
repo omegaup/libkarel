@@ -1,7 +1,7 @@
 """Setup tools for libkarel."""
 
 import subprocess
-import setuptools  # type: ignore
+import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
