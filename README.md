@@ -93,15 +93,6 @@ Para instalar `libkarel` en modo desarrollo, usa:
 pip install -e .
 ```
 
-## 🏗 Uso
-
-Ejemplo de uso básico:
-
-```python
-import libkarel
-# Aquí va un ejemplo práctico de uso de la librería
-```
-
 ## ✅ Pruebas
 
 Para ejecutar las pruebas:
